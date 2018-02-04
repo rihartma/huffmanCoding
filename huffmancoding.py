@@ -3,6 +3,27 @@ class Compression():
 	def __init__(self):
 		pass
 
+	def count_frequency(self, text):
+		freq = {}
+		for ch in text:
+			if ch in freq.keys():
+				freq[ch] += 1
+			else:
+				freq[ch] = 1
+
+		return freq
+
+	def knots_gen(self, freq):
+		'''
+		generates a list of the Knots objects
+		sets knot's value and character according to the keys and values from the frequency dict
+		'''
+		knots = []
+		for key in freq.keys():
+			knots.append(Knot(freq[key]))
+			knots[-1].character = key
+		return knots
+
 	def knots_order(self, array):
 		'''
 		orders knots according to their value from the lowest values
@@ -60,14 +81,10 @@ class Tree():
 		self.root = None
 
 c = Compression()
-
-chars = ['e','i','a','t','s','p','n']
-frequency = [15,12,10,4,3,13,1]
-
-knots = [] #adds Knots objects into the list, sets knot's value and character
-for i in range(len(chars)):
-	knots.append(Knot(frequency[i]))
-	knots[-1].character = chars[i]
+text = 'e'*15+'i'*12+'a'*10+'t'*4+'s'*3+'p'*13+'n'*1
+f = c.count_frequency(text)
+print(f)
+knots = c.knots_gen(f)
 
 while len(knots) >= 2:
 	knots = c.knots_order(knots)[::-1]
