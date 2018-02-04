@@ -79,7 +79,6 @@ class Compression():
 		print('\n')
 
 
-
 class Knot():
 
 	def __init__(self, value):
@@ -87,6 +86,32 @@ class Knot():
 		self.character = None
 		self.right_branch = None
 		self.left_branch = None
+
+
+class Tree():
+
+	def __init__(self):
+		self.root = None
+
+	def preorder(self):
+		self._preorder(self.root)
+
+	def _preorder(self, knot):
+		print(knot.value, end = ' ')
+		if knot.left_branch is not None:
+			self._preorder(knot.left_branch)
+		if knot.right_branch is not None:
+			self._preorder(knot.right_branch)
+
+	def inorder(self):
+		self._inorder(self.root)
+
+	def _inorder(self, knot):
+		if knot.left_branch is not None:
+			self._preorder(knot.left_branch)
+		print(knot.value, end = ' ')
+		if knot.right_branch is not None:
+			self._preorder(knot.right_branch)
 
 c = Compression()
 text = 'a'*10+'e'*15+'i'*12+'s'*3+'t'*4+'p'*13+'n'*1
