@@ -1,7 +1,7 @@
 class Compression():
 
 	def __init__(self):
-		pass
+		self.huffman_codes = {}
 
 	def count_frequency(self, text):
 		freq = {}
@@ -59,6 +59,20 @@ class Compression():
 		knots.append(new_knot)
 		return knots
 
+	def huffman_code(self, knots):
+		'''
+		returns a dictionary {key-character:value-huffmancode}
+		'''
+		self._huffman_code(knots[0], '')
+		return self.huffman_codes
+
+	def _huffman_code(self, knot, code):
+		if knot.character != None:
+			self.huffman_codes[knot.character] = code
+		else:
+			self._huffman_code(knot.left_branch, code+'0')
+			self._huffman_code(knot.right_branch, code+'1')
+
 	def print_knots(self, knots):
 		for knot in knots:
 			print(knot.value, knot.character)
@@ -74,14 +88,8 @@ class Knot():
 		self.right_branch = None
 		self.left_branch = None
 
-
-class Tree():
-
-	def __init__(self):
-		self.root = None
-
 c = Compression()
-text = 'e'*15+'i'*12+'a'*10+'t'*4+'s'*3+'p'*13+'n'*1
+text = 'a'*10+'e'*15+'i'*12+'s'*3+'t'*4+'p'*13+'n'*1
 f = c.count_frequency(text)
 print(f)
 knots = c.knots_gen(f)
@@ -90,4 +98,4 @@ while len(knots) >= 2:
 	knots = c.knots_order(knots)[::-1]
 	knots = c.new_knot(knots)
 
-c.print_knots(knots)
+print(c.huffman_code(knots))
