@@ -73,6 +73,13 @@ class Compression():
 			self._huffman_code(knot.left_branch, code+'0')
 			self._huffman_code(knot.right_branch, code+'1')
 
+	def save_table(self, knots):
+		text = ""
+		for key in knots:
+			text = text + key + "," + str(knots[key]) + ","
+		return text[0:-1]
+
+
 	def print_knots(self, knots):
 		for knot in knots:
 			print(knot.value, knot.character)
@@ -88,31 +95,6 @@ class Knot():
 		self.left_branch = None
 
 
-class Tree():
-
-	def __init__(self):
-		self.root = None
-
-	def preorder(self):
-		self._preorder(self.root)
-
-	def _preorder(self, knot):
-		print(knot.value, end = ' ')
-		if knot.left_branch is not None:
-			self._preorder(knot.left_branch)
-		if knot.right_branch is not None:
-			self._preorder(knot.right_branch)
-
-	def inorder(self):
-		self._inorder(self.root)
-
-	def _inorder(self, knot):
-		if knot.left_branch is not None:
-			self._preorder(knot.left_branch)
-		print(knot.value, end = ' ')
-		if knot.right_branch is not None:
-			self._preorder(knot.right_branch)
-
 c = Compression()
 text = 'a'*10+'e'*15+'i'*12+'s'*3+'t'*4+'p'*13+'n'*1
 f = c.count_frequency(text)
@@ -123,4 +105,6 @@ while len(knots) >= 2:
 	knots = c.knots_order(knots)[::-1]
 	knots = c.new_knot(knots)
 
-print(c.huffman_code(knots))
+codes = (c.huffman_code(knots))
+print(codes)
+print(c.save_table(codes))
