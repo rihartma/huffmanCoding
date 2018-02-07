@@ -95,16 +95,16 @@ class Knot():
 		self.left_branch = None
 
 
-c = Compression()
-text = 'a'*10+'e'*15+'i'*12+'s'*3+'t'*4+'p'*13+'n'*1
-f = c.count_frequency(text)
-print(f)
-knots = c.knots_gen(f)
+# c = Compression()
+# text = 'a'*10+'e'*15+'i'*12+'s'*3+'t'*4+'p'*13+'n'*1
+# f = c.count_frequency(text)
+# print(f)
+# knots = c.knots_gen(f)
 
-while len(knots) >= 2:
-	knots = c.knots_order(knots)[::-1]
-	knots = c.new_knot(knots)
+# while len(knots) >= 2:
+# 	knots = c.knots_order(knots)[::-1]
+# 	knots = c.new_knot(knots)
 
-codes = (c.huffman_code(knots))
-print(codes)
-print(c.save_table(codes))
+# codes = (c.huffman_code(knots))
+# print(codes)
+# print(c.save_table(codes))
