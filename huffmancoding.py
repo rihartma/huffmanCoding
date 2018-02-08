@@ -92,9 +92,7 @@ class Decompression():
 		b = ""
 		last_i = -1
 		if "~~~" in text and text.index("~~~") in range(len(text)-16, len(text)):
-			print(True)
 			last_i = text.index("~~~")
-			print(last_i)
 		for ch in text[0:last_i]:
 			code = bin(ord(ch))[2:]
 			code = "0"*(8-len(code)) + code
@@ -102,6 +100,18 @@ class Decompression():
 		if last_i != -1:
 			b = b + text[last_i+3:len(text)]
 		return b
+
+	def decompText(self, code, codes):
+		text = ""
+		firstI = 0
+		lastI = 0
+		while lastI < len(code):
+			if code[firstI:lastI] in codes:
+				text = text + codes[code[firstI:lastI]]
+				firstI = lastI
+			lastI+=1;
+		print(text)
+
 
 
 class Knot():
@@ -127,5 +137,7 @@ class Knot():
 # print(codes)
 # print(c.save_table(codes))
 
-d = Decompression()
-print(d.makeBinar("ahoj~~~10"))
+# d = Decompression()
+# t = d.makeBinar("²ú¨W{AQð+½­[Øýßùù²Î3ÎO3ÊÎO.ÙÉåÝÙÉåÝõ~~~111110")
+# print(t)
+# d.decompText(t)
