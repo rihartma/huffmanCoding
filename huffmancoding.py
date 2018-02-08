@@ -76,7 +76,7 @@ class Compression():
 	def save_table(self, knots):
 		text = ""
 		for key in knots:
-			text = text + key + "," + str(knots[key]) + ","
+			text = text + key + "-" + str(knots[key]) + ","
 		return text[0:-1]
 
 
