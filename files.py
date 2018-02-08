@@ -24,3 +24,15 @@ class Files():
 		file = open(name, 'w')
 		file.write(filetext)
 		file.close()
+
+	def loadTable(self, name):
+		file = open(name, "r")
+		text = file.read()
+		file.close()
+
+		codes = {}
+		pairs = text.split(",")
+		for pair in pairs:
+			t = pair.split("-")
+			codes[t[1]] = t[0]
+		return codes
