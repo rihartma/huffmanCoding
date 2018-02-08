@@ -16,7 +16,7 @@ try:
 		knots = c.new_knot(knots)
 	codes = c.huffman_code(knots)
 
-	f.saveFile("", text, codes)
+	f.saveFile(newfile, text, codes)
 
 except IndexError:
 	print("Usage: python3 compress.py <filename-to-compress> <name-of-the-compressed-file>")
