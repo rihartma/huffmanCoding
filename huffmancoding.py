@@ -86,6 +86,24 @@ class Compression():
 		print('\n')
 
 
+class Decompression():
+
+	def makeBinar(self, text):
+		b = ""
+		last_i = -1
+		if "~~~" in text and text.index("~~~") in range(len(text)-16, len(text)):
+			print(True)
+			last_i = text.index("~~~")
+			print(last_i)
+		for ch in text[0:last_i]:
+			code = bin(ord(ch))[2:]
+			code = "0"*(8-len(code)) + code
+			b = b + code
+		if last_i != -1:
+			b = b + text[last_i+3:len(text)]
+		return b
+
+
 class Knot():
 
 	def __init__(self, value):
@@ -108,3 +126,6 @@ class Knot():
 # codes = (c.huffman_code(knots))
 # print(codes)
 # print(c.save_table(codes))
+
+d = Decompression()
+print(d.makeBinar("ahoj~~~10"))

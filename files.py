@@ -19,7 +19,7 @@ class Files():
 		filetext = ""
 		for i in range(0, len(b)-8, 8):
 			filetext = filetext + chr(int(b[i:i+8],2))
-		if len(b)%8 != 0:
+		if len(b)%8 != 0:#"~~~" indicates bits that cannot be converted into character
 			filetext = filetext + "~~~" + b[len(b)-1-len(b)%8:len(b)]
 		file = open(name, 'w')
 		file.write(filetext)
