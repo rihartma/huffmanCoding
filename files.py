@@ -32,6 +32,16 @@ class Files():
 
 		codes = {}
 		pairs = text.split(",")
+		lenght = len(pairs)
+		index = 0
+		while index < lenght:
+			if pairs[index] == "":
+				pairs[index+1] = "," + pairs[index+1]
+				del pairs[index]
+				lenght -= 1
+				index -= 1
+			index += 1
+
 		for pair in pairs:
 			t = pair.split("-")
 			codes[t[1]] = t[0]
