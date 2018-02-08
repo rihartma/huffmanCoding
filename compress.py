@@ -15,7 +15,9 @@ try:
 		knots = c.knots_order(knots)[::-1]
 		knots = c.new_knot(knots)
 	codes = c.huffman_code(knots)
+	table = c.save_table(codes)
 
+	f.saveTable(table, newfile[0:-4]+"_table.txt")
 	f.saveFile(newfile, text, codes)
 
 except IndexError:
